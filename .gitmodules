@@ -1,0 +1,3 @@
+[submodule "GzipSwift"]
+	path = GzipSwift
+	url = https://github.com/1024jp/GzipSwift

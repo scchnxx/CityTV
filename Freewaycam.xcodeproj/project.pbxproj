@@ -11,7 +11,68 @@
 		09AAC7222316849900FC9398 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AAC7212316849900FC9398 /* ViewController.swift */; };
 		09AAC7242316849B00FC9398 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09AAC7232316849B00FC9398 /* Assets.xcassets */; };
 		09AAC7272316849B00FC9398 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09AAC7252316849B00FC9398 /* Main.storyboard */; };
+		85AF004523176FF80012E8EB /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AF003923176FE70012E8EB /* Gzip.framework */; };
+		85AF004623176FF80012E8EB /* Gzip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 85AF003923176FE70012E8EB /* Gzip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		85AF003823176FE70012E8EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85AF002E23176FE70012E8EB /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2AE050881D4A2C070040E4C9;
+			remoteInfo = "Gzip macOS";
+		};
+		85AF003A23176FE70012E8EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85AF002E23176FE70012E8EB /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2AE050991D4A2DC30040E4C9;
+			remoteInfo = "Gzip iOS";
+		};
+		85AF003C23176FE70012E8EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85AF002E23176FE70012E8EB /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A321EE71D4A6138002B0245;
+			remoteInfo = "Gzip watchOS";
+		};
+		85AF003E23176FE70012E8EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85AF002E23176FE70012E8EB /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A321F071D4A635F002B0245;
+			remoteInfo = "Gzip tvOS";
+		};
+		85AF004023176FE70012E8EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85AF002E23176FE70012E8EB /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A58A7571B00F414005FBBC2;
+			remoteInfo = "Tests macOS";
+		};
+		85AF004223176FE70012E8EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85AF002E23176FE70012E8EB /* Gzip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A58A77D1B00FBEF005FBBC2;
+			remoteInfo = "Tests iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		85AF004723176FF80012E8EB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				85AF004623176FF80012E8EB /* Gzip.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		09AAC71C2316849900FC9398 /* Freewaycam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freewaycam.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -21,6 +82,7 @@
 		09AAC7262316849B00FC9398 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		09AAC7282316849B00FC9398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09AAC7292316849B00FC9398 /* Freewaycam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Freewaycam.entitlements; sourceTree = "<group>"; };
+		85AF002E23176FE70012E8EB /* Gzip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Gzip.xcodeproj; path = GzipSwift/Gzip.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85AF004523176FF80012E8EB /* Gzip.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,8 +100,10 @@
 		09AAC7132316849900FC9398 = {
 			isa = PBXGroup;
 			children = (
+				85AF002E23176FE70012E8EB /* Gzip.xcodeproj */,
 				09AAC71E2316849900FC9398 /* Freewaycam */,
 				09AAC71D2316849900FC9398 /* Products */,
+				85AF004423176FF80012E8EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +128,26 @@
 			path = Freewaycam;
 			sourceTree = "<group>";
 		};
+		85AF002F23176FE70012E8EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85AF003923176FE70012E8EB /* Gzip.framework */,
+				85AF003B23176FE70012E8EB /* Gzip.framework */,
+				85AF003D23176FE70012E8EB /* Gzip.framework */,
+				85AF003F23176FE70012E8EB /* Gzip.framework */,
+				85AF004123176FE70012E8EB /* Tests macOS.xctest */,
+				85AF004323176FE70012E8EB /* Tests iOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		85AF004423176FF80012E8EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -73,6 +158,7 @@
 				09AAC7182316849900FC9398 /* Sources */,
 				09AAC7192316849900FC9398 /* Frameworks */,
 				09AAC71A2316849900FC9398 /* Resources */,
+				85AF004723176FF80012E8EB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -109,12 +195,63 @@
 			mainGroup = 09AAC7132316849900FC9398;
 			productRefGroup = 09AAC71D2316849900FC9398 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 85AF002F23176FE70012E8EB /* Products */;
+					ProjectRef = 85AF002E23176FE70012E8EB /* Gzip.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				09AAC71B2316849900FC9398 /* Freewaycam */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		85AF003923176FE70012E8EB /* Gzip.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Gzip.framework;
+			remoteRef = 85AF003823176FE70012E8EB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85AF003B23176FE70012E8EB /* Gzip.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Gzip.framework;
+			remoteRef = 85AF003A23176FE70012E8EB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85AF003D23176FE70012E8EB /* Gzip.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Gzip.framework;
+			remoteRef = 85AF003C23176FE70012E8EB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85AF003F23176FE70012E8EB /* Gzip.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Gzip.framework;
+			remoteRef = 85AF003E23176FE70012E8EB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85AF004123176FE70012E8EB /* Tests macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Tests macOS.xctest";
+			remoteRef = 85AF004023176FE70012E8EB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85AF004323176FE70012E8EB /* Tests iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Tests iOS.xctest";
+			remoteRef = 85AF004223176FE70012E8EB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		09AAC71A2316849900FC9398 /* Resources */ = {
