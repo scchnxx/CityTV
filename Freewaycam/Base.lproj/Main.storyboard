@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14865.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +674,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Freewaycam" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -703,11 +704,94 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Freewaycam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="VEa-0T-Lst" customClass="CCTVPreviewView" customModule="Freewaycam" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="395" height="270"/>
+                            </customView>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4BZ-bJ-xF2">
+                                <rect key="frame" x="399" y="146" width="77" height="120"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zqi-FK-RjJ">
+                                        <rect key="frame" x="-6" y="92" width="89" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0SO-9Q-cX5">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="label" size="13"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="play:" target="XfG-lQ-9wD" id="ceR-AY-wzW"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QF5-9q-2PL">
+                                        <rect key="frame" x="-6" y="59" width="89" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XEa-Ny-298">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="label" size="13"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="stop:" target="XfG-lQ-9wD" id="0DI-2k-WcE"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SCL-sC-cAj">
+                                        <rect key="frame" x="-6" y="26" width="89" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Pause" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8k7-ri-Qgd">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="label" size="13"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="pause:" target="XfG-lQ-9wD" id="HW7-eu-ckH"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="meU-XF-4Vv">
+                                        <rect key="frame" x="-6" y="-7" width="89" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Resume" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZUN-vL-9wf">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="label" size="13"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="resume:" target="XfG-lQ-9wD" id="Vg9-zL-zxN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="meU-XF-4Vv" firstAttribute="width" secondItem="4BZ-bJ-xF2" secondAttribute="width" id="4NP-0j-yTl"/>
+                                    <constraint firstItem="SCL-sC-cAj" firstAttribute="width" secondItem="4BZ-bJ-xF2" secondAttribute="width" id="EAM-xr-S9B"/>
+                                    <constraint firstItem="zqi-FK-RjJ" firstAttribute="width" secondItem="4BZ-bJ-xF2" secondAttribute="width" id="KUd-fh-yNY"/>
+                                    <constraint firstItem="QF5-9q-2PL" firstAttribute="width" secondItem="4BZ-bJ-xF2" secondAttribute="width" id="jIp-JL-nkp"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="4BZ-bJ-xF2" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="4" id="AAS-4J-RPV"/>
+                            <constraint firstAttribute="bottom" secondItem="VEa-0T-Lst" secondAttribute="bottom" id="PCL-ri-Qhd"/>
+                            <constraint firstItem="4BZ-bJ-xF2" firstAttribute="leading" secondItem="VEa-0T-Lst" secondAttribute="trailing" constant="4" id="VbQ-ex-aVD"/>
+                            <constraint firstItem="VEa-0T-Lst" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="gud-k8-t88"/>
+                            <constraint firstAttribute="trailing" secondItem="4BZ-bJ-xF2" secondAttribute="trailing" constant="4" id="hgy-7u-JTL"/>
+                            <constraint firstItem="VEa-0T-Lst" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="o2s-iG-2We"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pauseButton" destination="SCL-sC-cAj" id="XDO-Vk-uw5"/>
+                        <outlet property="previewView" destination="VEa-0T-Lst" id="vpk-37-k8x"/>
+                        <outlet property="resumeButton" destination="meU-XF-4Vv" id="SIw-8w-NQH"/>
+                        <outlet property="startButton" destination="zqi-FK-RjJ" id="gaR-NR-LbL"/>
+                        <outlet property="stopButton" destination="QF5-9q-2PL" id="qhz-45-COL"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
