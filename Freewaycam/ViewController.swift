@@ -8,21 +8,16 @@ class ViewController: NSViewController {
     @IBOutlet weak var pauseButton: NSButton!
     @IBOutlet weak var resumeButton: NSButton!
     
-    let loader = CCTVDataLoader()
+    let loader = CCTVLoader()
     
-    var value: CCTVData.Value?
+    var currentCCTV: CCTV?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loader.fetch(type: .value) { result in
-            if case .success(let cctvData) = result {
-                if let values = cctvData.values, values.count > 55 {
-                    self.value = values[55]
-                    return
-                }
-            }
-            self.startButton.isEnabled = false
+        CCTVLoader().fetch { result in
+            guard case .success(let cctvs) = result else { return }
+            self.currentCCTV = cctvs[55]
         }
         
         previewView.didStart = { [unowned self] in
@@ -48,7 +43,7 @@ class ViewController: NSViewController {
     }
 
     @IBAction func play(_ sender: Any) {
-        guard let value = value else { return }
+        guard let value = currentCCTV else { return }
         previewView.play(with: value)
     }
     

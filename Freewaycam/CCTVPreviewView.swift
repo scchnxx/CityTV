@@ -13,9 +13,10 @@ extension CCTVPreviewView {
 
 class CCTVPreviewView: NSView {
     
+    private var timeoutInterval = TimeInterval(3)
     private var session: URLSession?
     private var currentTask: URLSessionDataTask?
-    private var cctvValue: CCTVData.Value?
+    private var currentCctv: CCTV?
     private var receivedData = Data()
     private var recoveryCount = 0
     
@@ -52,8 +53,8 @@ class CCTVPreviewView: NSView {
         backgroundColor = .black
     }
     
-    func play(with value: CCTVData.Value) {
-        if value == cctvValue {
+    func play(with cctv: CCTV) {
+        if cctv == cctv {
             if state == .paused {
                 resume()
                 return
@@ -65,9 +66,9 @@ class CCTVPreviewView: NSView {
         stop()
         
         let newSession = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
-        let req = URLRequest(url: value.url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 1)
+        let req = URLRequest(url: cctv.url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: timeoutInterval)
         
-        cctvValue = value
+        currentCctv = cctv
         session = newSession
         state = .preparing
         
@@ -104,7 +105,7 @@ class CCTVPreviewView: NSView {
     
     private func recover() {
         guard let session = session else { return }
-        guard let value = cctvValue else { return }
+        guard let value = currentCctv else { return }
         let req = URLRequest(url: value.url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 3)
         currentTask = session.dataTask(with: req)
         currentTask?.resume()

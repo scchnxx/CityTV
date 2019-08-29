@@ -13,10 +13,9 @@
 		09AAC7272316849B00FC9398 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09AAC7252316849B00FC9398 /* Main.storyboard */; };
 		856B8EBA2317891B00A2C131 /* CCTVPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856B8EB92317891B00A2C131 /* CCTVPreviewView.swift */; };
 		856B8EC323179C1300A2C131 /* CCTVDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856B8EC223179C1300A2C131 /* CCTVDataParser.swift */; };
-		856B8EC523179C6A00A2C131 /* CCTVValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856B8EC423179C6A00A2C131 /* CCTVValue.swift */; };
 		85AF004523176FF80012E8EB /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AF003923176FE70012E8EB /* Gzip.framework */; };
 		85AF004623176FF80012E8EB /* Gzip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 85AF003923176FE70012E8EB /* Gzip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		85AF0049231770590012E8EB /* CCTVDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AF0048231770590012E8EB /* CCTVDataLoader.swift */; };
+		85AF0049231770590012E8EB /* CCTVLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AF0048231770590012E8EB /* CCTVLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,9 +87,8 @@
 		09AAC7292316849B00FC9398 /* Freewaycam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Freewaycam.entitlements; sourceTree = "<group>"; };
 		856B8EB92317891B00A2C131 /* CCTVPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVPreviewView.swift; sourceTree = "<group>"; };
 		856B8EC223179C1300A2C131 /* CCTVDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVDataParser.swift; sourceTree = "<group>"; };
-		856B8EC423179C6A00A2C131 /* CCTVValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVValue.swift; sourceTree = "<group>"; };
 		85AF002E23176FE70012E8EB /* Gzip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Gzip.xcodeproj; path = GzipSwift/Gzip.xcodeproj; sourceTree = "<group>"; };
-		85AF0048231770590012E8EB /* CCTVDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVDataLoader.swift; sourceTree = "<group>"; };
+		85AF0048231770590012E8EB /* CCTVLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,9 +124,8 @@
 		09AAC71E2316849900FC9398 /* Freewaycam */ = {
 			isa = PBXGroup;
 			children = (
-				856B8EC423179C6A00A2C131 /* CCTVValue.swift */,
 				856B8EC223179C1300A2C131 /* CCTVDataParser.swift */,
-				85AF0048231770590012E8EB /* CCTVDataLoader.swift */,
+				85AF0048231770590012E8EB /* CCTVLoader.swift */,
 				856B8EB92317891B00A2C131 /* CCTVPreviewView.swift */,
 				09AAC71F2316849900FC9398 /* AppDelegate.swift */,
 				09AAC7212316849900FC9398 /* ViewController.swift */,
@@ -286,8 +283,7 @@
 				856B8EC323179C1300A2C131 /* CCTVDataParser.swift in Sources */,
 				09AAC7222316849900FC9398 /* ViewController.swift in Sources */,
 				09AAC7202316849900FC9398 /* AppDelegate.swift in Sources */,
-				85AF0049231770590012E8EB /* CCTVDataLoader.swift in Sources */,
-				856B8EC523179C6A00A2C131 /* CCTVValue.swift in Sources */,
+				85AF0049231770590012E8EB /* CCTVLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
