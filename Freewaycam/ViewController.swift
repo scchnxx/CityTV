@@ -7,16 +7,25 @@ class ViewController: NSViewController {
     @IBOutlet weak var stopButton: NSButton!
     @IBOutlet weak var resumeButton: NSButton!
     
-    let loader = CCTVLoader()
+    let loader = TrafficInfoLoader()
     
     var currentCCTV: CCTV?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CCTVLoader().fetch { result in
+        TrafficInfoLoader().fetch(CCTV.self, type: .cctv) { result in
             guard case .success(let cctvs) = result else { return }
             self.currentCCTV = cctvs[55]
+            
+            let aS = cctvs.map { A(string: String($0.roadsection.split(separator: "(")[0]), int: $0.locationpath) }
+            Set(aS).forEach { a in
+                print(a.int, a.string)
+            }
+        }
+        
+        previewView.didStartLoading = { [unowned self] in
+            self.stopButton.isEnabled = true
         }
         
         previewView.didStart = { [unowned self] in

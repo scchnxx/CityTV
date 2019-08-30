@@ -1,23 +1,28 @@
 import Foundation
 
-class CCTVDataParser: NSObject {
+class DataParser: NSObject {
     
-    enum DataType {
-        case info
-        case value
+    enum ParserType {
+        case cctvInfo
+        case cctvValue
+        case roadLevelInfo
+        case roadLevelValue
         
         var url: URL {
-            self == .info ?
-                URL(string: "http://tisvcloud.freeway.gov.tw/cctv_info.xml.gz")! :
-                URL(string: "http://tisvcloud.freeway.gov.tw/cctv_value.xml.gz")!
+            switch self {
+            case .cctvInfo:       return URL(string: "http://tisvcloud.freeway.gov.tw/cctv_info.xml.gz")!
+            case .cctvValue:      return URL(string: "http://tisvcloud.freeway.gov.tw/cctv_value.xml.gz")!
+            case .roadLevelInfo:  return URL(string: "http://tisvcloud.freeway.gov.tw/roadlevel_info.xml.gz")!
+            case .roadLevelValue: return URL(string: "http://tisvcloud.freeway.gov.tw/roadlevel_value.xml.gz")!
+            }
         }
     }
     
-    private var dataType: DataType!
+    private var dataType: ParserType!
     private var parser: XMLParser!
-    private var cctvDataDicts: [[String: String]]?
+    private var dataDicts: [[String: String]]?
     
-    init(type: DataType, data: Data) {
+    init(type: ParserType, data: Data) {
         super.init()
         dataType = type
         parser = XMLParser(data: data)
@@ -31,17 +36,17 @@ class CCTVDataParser: NSObject {
     }
     
     func parse() -> [[String: String]]? {
-        cctvDataDicts = nil
+        dataDicts = nil
         parser.parse()
-        return cctvDataDicts
+        return dataDicts
     }
     
 }
 
-extension CCTVDataParser: XMLParserDelegate {
+extension DataParser: XMLParserDelegate {
     
     func parserDidStartDocument(_ parser: XMLParser) {
-        cctvDataDicts = []
+        dataDicts = []
     }
     
     func parser(_ parser: XMLParser,
@@ -55,7 +60,7 @@ extension CCTVDataParser: XMLParserDelegate {
             break
             
         case "Info":
-            cctvDataDicts?.append(attributeDict)
+            dataDicts?.append(attributeDict)
             
         default:
             break

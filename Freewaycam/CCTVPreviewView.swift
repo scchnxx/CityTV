@@ -19,21 +19,20 @@ class CCTVPreviewView: NSView {
     private var currentCCTV: CCTV?
     private var recoveryCount = 0
     
-    var didStart:       (() -> Void)?
-    var didFailToStart: (() -> Void)?
-    var didStop:        (() -> Void)?
+    var didStartLoading: (() -> Void)?
+    var didStart:        (() -> Void)?
+    var didFailToStart:  (() -> Void)?
+    var didStop:         (() -> Void)?
     
     var state = State.stopped {
         didSet {
             switch state {
+            case .loading:
+                didStartLoading?()
             case .playing:
                 didStart?()
             case .stopped:
-                oldValue == .stopped
-                    ? didFailToStart?()
-                    : didStop?()
-            default:
-                break
+                (oldValue == .stopped) ? didFailToStart?() : didStop?()
             }
         }
     }
@@ -73,6 +72,7 @@ class CCTVPreviewView: NSView {
     private func recover() {
         guard let cctv = currentCCTV else { return }
         let request = URLRequest(url: cctv.url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval)
+        state = .loading
         currentDataTask = session.dataTask(with: request)
         currentDataTask?.resume()
     }
