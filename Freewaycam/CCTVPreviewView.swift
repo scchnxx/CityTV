@@ -2,10 +2,9 @@ import Cocoa
 
 extension CCTVPreviewView {
     
-    enum State: Int {
-        case preparing
+    enum State {
+        case loading
         case playing
-        case paused
         case stopped
     }
     
@@ -13,12 +12,31 @@ extension CCTVPreviewView {
 
 class CCTVPreviewView: NSView {
     
-    private var timeoutInterval = TimeInterval(3)
-    private var session: URLSession?
-    private var currentTask: URLSessionDataTask?
-    private var currentCctv: CCTV?
-    private var receivedData = Data()
+    private let timeoutInterval = TimeInterval(3)
+    private var session: URLSession!
+    private var currentDataTask: URLSessionDataTask?
+    private var imageData = Data()
+    private var currentCCTV: CCTV?
     private var recoveryCount = 0
+    
+    var didStart:       (() -> Void)?
+    var didFailToStart: (() -> Void)?
+    var didStop:        (() -> Void)?
+    
+    var state = State.stopped {
+        didSet {
+            switch state {
+            case .playing:
+                didStart?()
+            case .stopped:
+                oldValue == .stopped
+                    ? didFailToStart?()
+                    : didStop?()
+            default:
+                break
+            }
+        }
+    }
     
     var backgroundColor: NSColor? {
         get {
@@ -30,85 +48,55 @@ class CCTVPreviewView: NSView {
         }
     }
     
-    var didStart: (() -> Void)?
-    var didPause: (() -> Void)?
-    var didResume: (() -> Void)?
-    var didStop: (() -> Void)?
-    
-    var state = State.stopped {
-        didSet {
-            switch state {
-            case .playing:   (oldValue == .paused) ? didResume?() :didStart?()
-            case .paused:    didPause?()
-            case .stopped:   didStop?()
-            default:         break
-            }
-        }
-    }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
+        session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
+        
         wantsLayer = true
         layer?.contentsGravity = .resizeAspect
         backgroundColor = .black
     }
     
-    func play(with cctv: CCTV) {
-        if cctv == cctv {
-            if state == .paused {
-                resume()
-                return
-            } else if state == .playing {
-                return
-            }
-        }
-        
-        stop()
-        
-        let newSession = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
-        let req = URLRequest(url: cctv.url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: timeoutInterval)
-        
-        currentCctv = cctv
-        session = newSession
-        state = .preparing
-        
-        currentTask = newSession.dataTask(with: req)
-        currentTask?.resume()
+    private func isValidImageData(_ data: Data) -> Bool {
+        guard data.count >= 125 else { return false }
+        let endIndex = data.endIndex
+        let hasSOI = data.subdata(in: 0..<2) == SOI
+        let hasEOI = (data.range(of: EOI, options: .backwards, in: (endIndex - 4)..<endIndex) != nil)
+        return hasSOI && hasEOI
     }
     
-    func resume() {
-        guard state == .paused else { return }
-        recover()
-    }
-    
-    func pause() {
-        guard state == .playing else { return }
-        state = .paused
-        cancel()
-    }
-    
-    func stop() {
-        guard let session = session else { return }
-        let alreadyStopped = (currentTask == nil)
-        self.session = nil
-        session.invalidateAndCancel()
-        if alreadyStopped {
-            state = .stopped
-        }
-    }
-    
-    private func cancel() {
-        guard let task = currentTask else { return }
-        currentTask = nil
-        task.cancel()
+    private func setImage(_ image: NSImage) {
+        layer?.contents = image
     }
     
     private func recover() {
-        guard let session = session else { return }
-        guard let value = currentCctv else { return }
-        let req = URLRequest(url: value.url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 3)
-        currentTask = session.dataTask(with: req)
-        currentTask?.resume()
+        guard let cctv = currentCCTV else { return }
+        let request = URLRequest(url: cctv.url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval)
+        currentDataTask = session.dataTask(with: request)
+        currentDataTask?.resume()
+    }
+    
+    func resume() {
+        guard state != .playing else { return }
+        recover()
+    }
+    
+    func play(cctv: CCTV) {
+        guard cctv != currentCCTV else {
+            resume()
+            return
+        }
+        currentCCTV = cctv
+        stop()
+        recover()
+    }
+    
+    func stop() {
+        guard state != .stopped, let task = currentDataTask else { return }
+        currentDataTask = nil
+        task.cancel()
+        state = .stopped
     }
     
 }
@@ -116,46 +104,35 @@ class CCTVPreviewView: NSView {
 fileprivate let SOI = Data([0xFF, 0xD8])
 fileprivate let EOI = Data([0xFF, 0xD9])
 
-extension CCTVPreviewView: URLSessionTaskDelegate, URLSessionDataDelegate {
-    
-    private func checkImageData(_ data: Data) -> Bool {
-        guard data.count >= 125 else { return false }
-        return data.subdata(in: 0..<2) == SOI &&
-            data.range(of: EOI, options: .backwards, in: (data.endIndex - 4)..<data.endIndex) != nil
-    }
+extension CCTVPreviewView: URLSessionDelegate, URLSessionDataDelegate {
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         if state != .playing {
+            imageData.removeAll()
             state = .playing
-            recoveryCount = 0
         }
-        receivedData += data
+        imageData += data
     }
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask,
                     didReceive response: URLResponse,
                     completionHandler: @escaping (URLSession.ResponseDisposition) -> Void)
     {
-        if checkImageData(receivedData), let image = NSImage(data: receivedData) {
-            layer?.contents = image
+        if isValidImageData(imageData), let image = NSImage(data: imageData) {
+            setImage(image)
         }
-        receivedData.removeAll()
+        imageData.removeAll()
         completionHandler(.allow)
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        receivedData.removeAll()
+        guard task == currentDataTask else { return }
         
-        if session == self.session {
-            if state != .paused {
-                if recoveryCount != 3 {
-                    recoveryCount += 1
-                    recover()
-                } else {
-                    state = .stopped
-                }
-            }
-        } else if self.session == nil {
+        if recoveryCount != 3 {
+            recoveryCount += 1
+            recover()
+        } else {
+            currentDataTask = nil
             state = .stopped
         }
     }

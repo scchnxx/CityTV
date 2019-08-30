@@ -5,7 +5,6 @@ class ViewController: NSViewController {
     @IBOutlet weak var previewView: CCTVPreviewView!
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var stopButton: NSButton!
-    @IBOutlet weak var pauseButton: NSButton!
     @IBOutlet weak var resumeButton: NSButton!
     
     let loader = CCTVLoader()
@@ -21,38 +20,26 @@ class ViewController: NSViewController {
         }
         
         previewView.didStart = { [unowned self] in
-            [self.stopButton, self.pauseButton].forEach { $0?.isEnabled = true }
-            self.resumeButton.isEnabled = false
+            self.stopButton.isEnabled = true
         }
         
-        previewView.didPause = { [unowned self] in
-            self.pauseButton.isEnabled.toggle()
-            self.resumeButton.isEnabled.toggle()
-        }
-        
-        previewView.didResume = { [unowned self] in
-            self.pauseButton.isEnabled.toggle()
-            self.resumeButton.isEnabled.toggle()
+        previewView.didFailToStart = { [unowned self] in
+            self.resumeButton.isEnabled = true
         }
         
         previewView.didStop = { [unowned self] in
-            [self.stopButton, self.resumeButton, self.pauseButton].forEach { $0?.isEnabled = false }
+            self.stopButton.isEnabled = false
+            self.resumeButton.isEnabled = true
         }
-        
-        previewView.didStop?()
     }
 
     @IBAction func play(_ sender: Any) {
-        guard let value = currentCCTV else { return }
-        previewView.play(with: value)
+        guard let cctv = currentCCTV else { return }
+        previewView.play(cctv: cctv)
     }
     
     @IBAction func stop(_ sender: Any) {
         previewView.stop()
-    }
-    
-    @IBAction func pause(_ sender: Any) {
-        previewView.pause()
     }
     
     @IBAction func resume(_ sender: Any) {
