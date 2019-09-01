@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0909A369231980A8001951BE /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909A368231980A8001951BE /* Direction.swift */; };
 		09AAC7202316849900FC9398 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AAC71F2316849900FC9398 /* AppDelegate.swift */; };
 		09AAC7222316849900FC9398 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AAC7212316849900FC9398 /* ViewController.swift */; };
 		09AAC7242316849B00FC9398 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09AAC7232316849B00FC9398 /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0909A368231980A8001951BE /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		09AAC71C2316849900FC9398 /* Freewaycam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freewaycam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09AAC71F2316849900FC9398 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09AAC7212316849900FC9398 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				858E22A42318F5000051B24E /* DictionayInitializable.swift */,
 				858E22AA231911F30051B24E /* InfoValueCombinable.swift */,
 				858E22AD231931FF0051B24E /* RoadPath.swift */,
+				0909A368231980A8001951BE /* Direction.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				858E22A52318F5000051B24E /* DictionayInitializable.swift in Sources */,
 				85AF0049231770590012E8EB /* TrafficInfoLoader.swift in Sources */,
 				858E22A02318F1C90051B24E /* CCTVInfo.swift in Sources */,
+				0909A369231980A8001951BE /* Direction.swift in Sources */,
 				858E22A72318FFF60051B24E /* RoadLevelInfo.swift in Sources */,
 				857453F02318C3AF00C815FD /* CCTVPreviewView.swift in Sources */,
 				858E22AE231931FF0051B24E /* RoadPath.swift in Sources */,

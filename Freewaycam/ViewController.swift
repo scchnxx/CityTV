@@ -17,11 +17,6 @@ class ViewController: NSViewController {
         TrafficInfoLoader().fetch(CCTV.self, type: .cctv) { result in
             guard case .success(let cctvs) = result else { return }
             self.currentCCTV = cctvs[55]
-            
-            let aS = cctvs.map { A(string: String($0.roadsection.split(separator: "(")[0]), int: $0.locationpath) }
-            Set(aS).forEach { a in
-                print(a.int, a.string)
-            }
         }
         
         previewView.didStartLoading = { [unowned self] in

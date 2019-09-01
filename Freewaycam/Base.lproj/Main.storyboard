@@ -678,7 +678,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="76" y="0.0"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -709,18 +709,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4BZ-bJ-xF2">
-                                <rect key="frame" x="4" y="169" width="100" height="97"/>
+                                <rect key="frame" x="4" y="170" width="100" height="96"/>
                                 <subviews>
-                                    <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQE-xa-Mfy">
-                                        <rect key="frame" x="2" y="75" width="96" height="22"/>
-                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" usesSingleLineMode="YES" bezelStyle="round" id="QnM-vm-FSW">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </searchFieldCell>
-                                    </searchField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zqi-FK-RjJ">
-                                        <rect key="frame" x="-6" y="43" width="112" height="32"/>
+                                        <rect key="frame" x="-6" y="68" width="112" height="32"/>
                                         <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0SO-9Q-cX5">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -730,7 +722,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QF5-9q-2PL">
-                                        <rect key="frame" x="-6" y="18" width="112" height="32"/>
+                                        <rect key="frame" x="-6" y="43" width="112" height="32"/>
                                         <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XEa-Ny-298">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -740,7 +732,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="meU-XF-4Vv">
-                                        <rect key="frame" x="-6" y="-7" width="112" height="32"/>
+                                        <rect key="frame" x="-6" y="18" width="112" height="32"/>
                                         <buttonCell key="cell" type="push" title="Resume" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZUN-vL-9wf">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -749,6 +741,20 @@
                                             <action selector="resume:" target="XfG-lQ-9wD" id="Vg9-zL-zxN"/>
                                         </connections>
                                     </button>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BW8-w5-eJ2">
+                                        <rect key="frame" x="12" y="-3" width="77" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="0cX-3n-Rsr" id="vYz-YI-cC6">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <menu key="menu" id="E8x-gQ-vyN">
+                                                <items>
+                                                    <menuItem title="Item 1" state="on" id="0cX-3n-Rsr"/>
+                                                    <menuItem title="Item 2" id="xWx-a1-rOr"/>
+                                                    <menuItem title="Item 3" id="4fu-fx-cKw"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                    </popUpButton>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="meU-XF-4Vv" firstAttribute="width" secondItem="4BZ-bJ-xF2" secondAttribute="width" id="4NP-0j-yTl"/>

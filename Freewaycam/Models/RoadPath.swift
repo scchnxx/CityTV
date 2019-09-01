@@ -1,27 +1,56 @@
-enum RoadPath: Int, CustomStringConvertible {
-    case n1   = 166
-    case n2   = 135
-    case n3   = 28
-    case n3A  = 143
-    case n4   = 128
-    case n5   = 154
-    case n6   = 5104
-    case n8   = 121
-    case n10  = 113
-    case n1H  = 147
-    case t66  = 4104
-    case t68  = 4113
-    case t72  = 4121
-    case t74  = 4129
-    case t74A = 5253
-    case t76  = 4141
-    case t78  = 4149
-    case t82  = 4158
-    case t84  = 4165
-    case t86  = 4171
-    case t88  = 4179
-    case n2K  = 4969
-    case n3N  = 490
+enum RoadPath: String, CustomStringConvertible {
+    case n1   = "N1"
+    case n2   = "N2"
+    case n3   = "N3"
+    case n3A  = "N3A"
+    case n4   = "N4"
+    case n5   = "N5"
+    case n6   = "N6"
+    case n8   = "N8"
+    case n10  = "N10"
+    case n1H  = "N1H"
+    case t66  = "T66"
+    case t68  = "T68"
+    case t72  = "T72"
+    case t74  = "T74"
+    case t74A = "T74A"
+    case t76  = "T76"
+    case t78  = "T78"
+    case t82  = "T82"
+    case t84  = "T84"
+    case t86  = "T86"
+    case t88  = "T88"
+    case n2K  = "N2K"
+    case n3N  = "N3N"
+    
+    init?(id: Int) {
+        switch id {
+        case 166:  self = .n1
+        case 135:  self = .n2
+        case 28:   self = .n3
+        case 143:  self = .n3A
+        case 128:  self = .n4
+        case 154:  self = .n5
+        case 5104: self = .n6
+        case 121:  self = .n8
+        case 113:  self = .n10
+        case 147:  self = .n1H
+        case 4104: self = .t66
+        case 4113: self = .t68
+        case 4121: self = .t72
+        case 4129: self = .t74
+        case 5253: self = .t74A
+        case 4141: self = .t76
+        case 4149: self = .t78
+        case 4158: self = .t82
+        case 4165: self = .t84
+        case 4171: self = .t86
+        case 4179: self = .t88
+        case 4969: self = .n2K
+        case 490:  self = .n3N
+        default:   return nil
+        }
+    }
     
     var description: String {
         switch self {
