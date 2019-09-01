@@ -109,6 +109,7 @@ extension CCTVPreviewView: URLSessionDelegate, URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         if state != .playing {
             imageData.removeAll()
+            recoveryCount = 0
             state = .playing
         }
         imageData += data
@@ -128,7 +129,7 @@ extension CCTVPreviewView: URLSessionDelegate, URLSessionDataDelegate {
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard task == currentDataTask else { return }
         
-        if recoveryCount != 3 {
+        if recoveryCount != 5 {
             recoveryCount += 1
             recover()
         } else {
