@@ -19,24 +19,6 @@ class CCTVPreviewView: NSView {
     private var currentCCTV: CCTV?
     private var recoveryCount = 0
     
-    var didStartLoading: (() -> Void)?
-    var didStart:        (() -> Void)?
-    var didFailToStart:  (() -> Void)?
-    var didStop:         (() -> Void)?
-    
-    var state = State.stopped {
-        didSet {
-            switch state {
-            case .loading:
-                didStartLoading?()
-            case .playing:
-                didStart?()
-            case .stopped:
-                (oldValue == .stopped) ? didFailToStart?() : didStop?()
-            }
-        }
-    }
-    
     var backgroundColor: NSColor? {
         get {
             guard let cgColor = layer?.backgroundColor else { return nil }
@@ -47,6 +29,13 @@ class CCTVPreviewView: NSView {
         }
     }
     
+    var state = State.stopped
+    
+    var didStartLoading: (() -> Void)?
+    var didStart:        (() -> Void)?
+    var didFailToStart:  (() -> Void)?
+    var didStop:         (() -> Void)?
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
@@ -54,7 +43,7 @@ class CCTVPreviewView: NSView {
         
         wantsLayer = true
         layer?.contentsGravity = .resizeAspect
-        backgroundColor = .black
+        backgroundColor = .blue
     }
     
     private func isValidImageData(_ data: Data) -> Bool {
@@ -72,7 +61,10 @@ class CCTVPreviewView: NSView {
     private func recover() {
         guard let cctv = currentCCTV else { return }
         let request = URLRequest(url: cctv.url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval)
-        state = .loading
+        if state != .loading && state != .playing {
+            state = .loading
+            didStartLoading?()
+        }
         currentDataTask = session.dataTask(with: request)
         currentDataTask?.resume()
     }
@@ -93,10 +85,12 @@ class CCTVPreviewView: NSView {
     }
     
     func stop() {
-        guard state != .stopped, let task = currentDataTask else { return }
+        guard let task = currentDataTask else { return }
         currentDataTask = nil
         task.cancel()
+        layer?.contents = nil
         state = .stopped
+        didStop?()
     }
     
 }
@@ -111,6 +105,7 @@ extension CCTVPreviewView: URLSessionDelegate, URLSessionDataDelegate {
             imageData.removeAll()
             recoveryCount = 0
             state = .playing
+            didStart?()
         }
         imageData += data
     }
@@ -129,12 +124,14 @@ extension CCTVPreviewView: URLSessionDelegate, URLSessionDataDelegate {
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard task == currentDataTask else { return }
         
-        if recoveryCount != 5 {
+        if recoveryCount != 3 {
             recoveryCount += 1
             recover()
         } else {
+            layer?.contents = nil
             currentDataTask = nil
             state = .stopped
+            didFailToStart?()
         }
     }
     
