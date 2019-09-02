@@ -1,9 +1,11 @@
-//
-//  MainSplitViewController.swift
-//  Freewaycam
-//
-//  Created by 陳世爵 on 2019/9/2.
-//  Copyright © 2019 scchn. All rights reserved.
-//
+import Cocoa
 
-import Foundation
+class MainSplitViewController: NSSplitViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        splitViewItems.first?.minimumThickness = 200
+        splitViewItems.first?.maximumThickness = 300
+    }
+    
+}
