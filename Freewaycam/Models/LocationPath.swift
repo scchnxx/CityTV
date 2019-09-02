@@ -1,4 +1,4 @@
-enum RoadPath: String, CustomStringConvertible {
+enum LocationPath: String, CustomStringConvertible {
     case n1   = "N1"
     case n2   = "N2"
     case n3   = "N3"
