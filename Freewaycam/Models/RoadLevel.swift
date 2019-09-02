@@ -16,7 +16,7 @@ struct RoadLevel: Equatable {
 
 extension RoadLevel: InfoValueCombinable {
     
-    init?(info: DictionayInitializable, value: DictionayInitializable) {
+    init?(info: TrafficData, value: TrafficData) {
         guard let info = info as? RoadLevelInfo, let value = value as? RoadLevelValue else { return nil }
         guard info.id == value.id else { return nil }
         id = info.id

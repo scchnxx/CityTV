@@ -1,6 +1,6 @@
 import Foundation
 
-struct CCTVValue: DictionayInitializable {
+struct CCTVValue: TrafficData {
     var id: String
     var url: URL
     var status: Bool

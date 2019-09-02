@@ -1,4 +1,4 @@
-struct RoadLevelValue: DictionayInitializable {
+struct RoadLevelValue: TrafficData {
     var id: String
     var level: Int
     var value: Int

@@ -1,3 +1,3 @@
 protocol InfoValueCombinable {
-    init?(info: DictionayInitializable, value: DictionayInitializable)
+    init?(info: TrafficData, value: TrafficData)
 }

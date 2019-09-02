@@ -1,6 +1,6 @@
 import Foundation
 
-struct CCTVInfo: DictionayInitializable {
+struct CCTVInfo: TrafficData {
     var id: String
     var roadsection: String
     var locationpath: Int

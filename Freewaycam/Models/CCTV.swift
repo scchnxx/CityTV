@@ -14,7 +14,7 @@ struct CCTV: Equatable {
 
 extension CCTV: InfoValueCombinable {
     
-    init?(info: DictionayInitializable, value: DictionayInitializable) {
+    init?(info: TrafficData, value: TrafficData) {
         guard let info = info as? CCTVInfo, let value = value as? CCTVValue else { return nil }
         guard info.id == value.id else { return nil }
         id = info.id

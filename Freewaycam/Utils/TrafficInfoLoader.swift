@@ -19,7 +19,7 @@ extension TrafficInfoLoader {
             }
         }
         
-        fileprivate var dataTypes: (info: DictionayInitializable.Type, value: DictionayInitializable.Type) {
+        fileprivate var dataTypes: (info: TrafficData.Type, value: TrafficData.Type) {
             switch self {
             case .cctv:      return (CCTVInfo.self, CCTVValue.self)
             case .roadLevel: return (RoadLevelInfo.self, RoadLevelValue.self)
@@ -53,20 +53,11 @@ class TrafficInfoLoader: NSObject {
         urlDataTask.resume()
     }
     
-//    private func fetchData<T: DictionayInitializable>(_ t: T.Type, parserType: DataParser.ParserType, _ completion: @escaping (Result<[T], TrafficInfoLoaderError>) -> Void) {
-//        fetch(parserType: parserType) { result in
-//            switch result {
-//            case .success(let dicts): completion(.success(dicts.compactMap(T.init)))
-//            case .failure(let err):   completion(.failure(err))
-//            }
-//        }
-//    }
-    
     func fetch<T: InfoValueCombinable>(_ t: T.Type, type: DataType, _ completion: @escaping (Result<[T], TrafficInfoLoaderError>) -> Void) {
         let group = DispatchGroup()
         var error = TrafficInfoLoaderError.dataParserError
-        var cctvInfos: [DictionayInitializable]?
-        var cctvValues: [DictionayInitializable]?
+        var cctvInfos: [TrafficData]?
+        var cctvValues: [TrafficData]?
         
         group.enter()
         fetch(parserType: type.dataParserTypes.info) { result in
