@@ -12,7 +12,7 @@ extension CCTVPreviewView {
 
 class CCTVPreviewView: NSView {
     
-    private let timeoutInterval = TimeInterval(3)
+    private let timeoutInterval = TimeInterval(2)
     private var session: URLSession!
     private var currentDataTask: URLSessionDataTask?
     private var imageData = Data()
@@ -20,12 +20,8 @@ class CCTVPreviewView: NSView {
     private var recoveryCount = 0
     
     var backgroundColor: NSColor? {
-        get {
-            guard let cgColor = layer?.backgroundColor else { return nil }
-            return NSColor(cgColor: cgColor)
-        }
-        set {
-            layer?.backgroundColor = newValue?.cgColor
+        didSet {
+            layer?.backgroundColor = backgroundColor?.cgColor
         }
     }
     
@@ -43,7 +39,13 @@ class CCTVPreviewView: NSView {
         
         wantsLayer = true
         layer?.contentsGravity = .resizeAspect
-        backgroundColor = .blue
+        backgroundColor = .controlBackgroundColor
+    }
+    
+    override func layout() {
+        super.layout()
+        let bgColor = backgroundColor
+        backgroundColor = bgColor
     }
     
     private func isValidImageData(_ data: Data) -> Bool {
