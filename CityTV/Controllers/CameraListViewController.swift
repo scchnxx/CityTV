@@ -56,7 +56,7 @@ class CameraListViewController: NSViewController {
         static let cctv = "cctv"
     }
     
-    static let selectionDidChangeNotification = Notification.Name(rawValue: "com.scchnxx.Freewaycam.CameraListViewController.selectionDidChangeNotification")
+    static let selectionDidChangeNotification = Notification.Name(rawValue: "com.scchnxx.CityTV.CameraListViewController.selectionDidChangeNotification")
     
     // MARK: - UI
     

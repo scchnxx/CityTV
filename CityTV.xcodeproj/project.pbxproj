@@ -96,12 +96,12 @@
 
 /* Begin PBXFileReference section */
 		0909A368231980A8001951BE /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
-		09AAC71C2316849900FC9398 /* Freewaycam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freewaycam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		09AAC71C2316849900FC9398 /* CityTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09AAC71F2316849900FC9398 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09AAC7232316849B00FC9398 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09AAC7262316849B00FC9398 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		09AAC7282316849B00FC9398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09AAC7292316849B00FC9398 /* Freewaycam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Freewaycam.entitlements; sourceTree = "<group>"; };
+		09AAC7292316849B00FC9398 /* CityTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CityTV.entitlements; sourceTree = "<group>"; };
 		8508D6F6231CDE09000590E8 /* CameraListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraListViewController.swift; sourceTree = "<group>"; };
 		8508D6F8231CDE50000590E8 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		856B8EC223179C1300A2C131 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				85AF002E23176FE70012E8EB /* Gzip.xcodeproj */,
-				09AAC71E2316849900FC9398 /* Freewaycam */,
+				09AAC71E2316849900FC9398 /* CityTV */,
 				09AAC71D2316849900FC9398 /* Products */,
 				85AF004423176FF80012E8EB /* Frameworks */,
 			);
@@ -179,12 +179,12 @@
 		09AAC71D2316849900FC9398 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				09AAC71C2316849900FC9398 /* Freewaycam.app */,
+				09AAC71C2316849900FC9398 /* CityTV.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		09AAC71E2316849900FC9398 /* Freewaycam */ = {
+		09AAC71E2316849900FC9398 /* CityTV */ = {
 			isa = PBXGroup;
 			children = (
 				858E22A12318F2340051B24E /* Models */,
@@ -196,9 +196,9 @@
 				09AAC7232316849B00FC9398 /* Assets.xcassets */,
 				09AAC7252316849B00FC9398 /* Main.storyboard */,
 				09AAC7282316849B00FC9398 /* Info.plist */,
-				09AAC7292316849B00FC9398 /* Freewaycam.entitlements */,
+				09AAC7292316849B00FC9398 /* CityTV.entitlements */,
 			);
-			path = Freewaycam;
+			path = CityTV;
 			sourceTree = "<group>";
 		};
 		858E22A12318F2340051B24E /* Models */ = {
@@ -251,9 +251,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		09AAC71B2316849900FC9398 /* Freewaycam */ = {
+		09AAC71B2316849900FC9398 /* CityTV */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09AAC72C2316849B00FC9398 /* Build configuration list for PBXNativeTarget "Freewaycam" */;
+			buildConfigurationList = 09AAC72C2316849B00FC9398 /* Build configuration list for PBXNativeTarget "CityTV" */;
 			buildPhases = (
 				09AAC7182316849900FC9398 /* Sources */,
 				09AAC7192316849900FC9398 /* Frameworks */,
@@ -264,9 +264,9 @@
 			);
 			dependencies = (
 			);
-			name = Freewaycam;
+			name = CityTV;
 			productName = Freewaycam;
-			productReference = 09AAC71C2316849900FC9398 /* Freewaycam.app */;
+			productReference = 09AAC71C2316849900FC9398 /* CityTV.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -284,7 +284,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 09AAC7172316849900FC9398 /* Build configuration list for PBXProject "Freewaycam" */;
+			buildConfigurationList = 09AAC7172316849900FC9398 /* Build configuration list for PBXProject "CityTV" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -303,7 +303,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				09AAC71B2316849900FC9398 /* Freewaycam */,
+				09AAC71B2316849900FC9398 /* CityTV */,
 			);
 		};
 /* End PBXProject section */
@@ -526,18 +526,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Freewaycam/Freewaycam.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CityTV/CityTV.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = B8F5X7B8AQ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Freewaycam/Info.plist;
+				INFOPLIST_FILE = CityTV/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.scchn.Freewaycam;
+				PRODUCT_BUNDLE_IDENTIFIER = com.scchn.CityTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -547,18 +547,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Freewaycam/Freewaycam.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CityTV/CityTV.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = B8F5X7B8AQ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Freewaycam/Info.plist;
+				INFOPLIST_FILE = CityTV/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.scchn.Freewaycam;
+				PRODUCT_BUNDLE_IDENTIFIER = com.scchn.CityTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -567,7 +567,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		09AAC7172316849900FC9398 /* Build configuration list for PBXProject "Freewaycam" */ = {
+		09AAC7172316849900FC9398 /* Build configuration list for PBXProject "CityTV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09AAC72A2316849B00FC9398 /* Debug */,
@@ -576,7 +576,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		09AAC72C2316849B00FC9398 /* Build configuration list for PBXNativeTarget "Freewaycam" */ = {
+		09AAC72C2316849B00FC9398 /* Build configuration list for PBXNativeTarget "CityTV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09AAC72D2316849B00FC9398 /* Debug */,
