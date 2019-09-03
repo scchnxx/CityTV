@@ -124,6 +124,7 @@ extension CCTVPreviewView: URLSessionDelegate, URLSessionDataDelegate {
             recoveryCount += 1
             recover()
         } else {
+            recoveryCount = 0
             imageData.removeAll()
             layer?.contents = nil
             currentDataTask = nil
