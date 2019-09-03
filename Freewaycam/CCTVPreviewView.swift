@@ -88,6 +88,7 @@ class CCTVPreviewView: NSView {
         guard let task = currentDataTask else { return }
         currentDataTask = nil
         task.cancel()
+        imageData.removeAll()
         layer?.contents = nil
         state = .stopped
         didStop?()
@@ -128,6 +129,7 @@ extension CCTVPreviewView: URLSessionDelegate, URLSessionDataDelegate {
             recoveryCount += 1
             recover()
         } else {
+            imageData.removeAll()
             layer?.contents = nil
             currentDataTask = nil
             state = .stopped
