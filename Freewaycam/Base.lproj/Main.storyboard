@@ -683,8 +683,8 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="Freewaycam" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Freewaycam" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="609" y="381" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -736,6 +736,23 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="eho-0P-N5A" customClass="CCTVPreviewView" customModule="Freewaycam" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="353" height="300"/>
                             </customView>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="0pq-oF-Wcj">
+                                <rect key="frame" x="4" y="276" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0pq-oF-Wcj" secondAttribute="height" multiplier="1:1" id="2Sd-If-Xj3"/>
+                                    <constraint firstAttribute="height" constant="20" id="vcV-PN-1ZS"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="jqY-da-rcZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="stopButtonClicked:" target="C15-OW-nny" id="Ugg-sC-oyh"/>
+                                </connections>
+                            </button>
                             <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="YQZ-bp-vD3">
                                 <rect key="frame" x="161" y="134" width="32" height="32"/>
                             </progressIndicator>
@@ -757,18 +774,21 @@
                             <constraint firstItem="YQZ-bp-vD3" firstAttribute="centerY" secondItem="JlU-kB-ayD" secondAttribute="centerY" id="3mf-Zn-Iya"/>
                             <constraint firstItem="caB-2i-kp9" firstAttribute="centerX" secondItem="YQZ-bp-vD3" secondAttribute="centerX" id="8ip-LM-vFZ"/>
                             <constraint firstItem="caB-2i-kp9" firstAttribute="centerY" secondItem="YQZ-bp-vD3" secondAttribute="centerY" id="8ua-00-Vr7"/>
+                            <constraint firstItem="0pq-oF-Wcj" firstAttribute="top" secondItem="JlU-kB-ayD" secondAttribute="top" constant="4" id="9gM-mA-nuu"/>
                             <constraint firstItem="caB-2i-kp9" firstAttribute="width" secondItem="YQZ-bp-vD3" secondAttribute="width" id="ACx-oL-JRi"/>
                             <constraint firstItem="eho-0P-N5A" firstAttribute="leading" secondItem="JlU-kB-ayD" secondAttribute="leading" id="HGk-DE-tIa"/>
                             <constraint firstItem="caB-2i-kp9" firstAttribute="height" secondItem="YQZ-bp-vD3" secondAttribute="height" id="RLR-ql-F99"/>
                             <constraint firstItem="YQZ-bp-vD3" firstAttribute="centerX" secondItem="JlU-kB-ayD" secondAttribute="centerX" id="Ycx-jv-dMi"/>
                             <constraint firstItem="eho-0P-N5A" firstAttribute="top" secondItem="JlU-kB-ayD" secondAttribute="top" id="ZC7-UM-Dfg"/>
                             <constraint firstAttribute="trailing" secondItem="eho-0P-N5A" secondAttribute="trailing" id="hk7-9U-9as"/>
+                            <constraint firstItem="0pq-oF-Wcj" firstAttribute="leading" secondItem="JlU-kB-ayD" secondAttribute="leading" constant="4" id="xar-DY-WxA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="loadingIndicator" destination="YQZ-bp-vD3" id="SkO-cz-GxB"/>
                         <outlet property="previewView" destination="eho-0P-N5A" id="XaO-fE-b7e"/>
                         <outlet property="reloadButton" destination="caB-2i-kp9" id="Exl-b1-FDS"/>
+                        <outlet property="stopButton" destination="0pq-oF-Wcj" id="X3G-le-xSg"/>
                     </connections>
                 </viewController>
                 <customObject id="7YR-iQ-2b1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -804,20 +824,20 @@
         <scene sceneID="64B-Y1-Zsd">
             <objects>
                 <viewController id="tGi-bJ-CnY" customClass="CameraListViewController" customModule="Freewaycam" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="CsD-cB-A0v">
-                        <rect key="frame" x="0.0" y="0.0" width="353" height="318"/>
+                    <view key="view" misplaced="YES" id="CsD-cB-A0v">
+                        <rect key="frame" x="0.0" y="0.0" width="353" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bSw-0L-BDS">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="318"/>
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="284"/>
                                 <subviews>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PTE-dl-Yr3">
-                                        <rect key="frame" x="-2" y="295" width="357" height="24"/>
-                                        <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="separated" trackingMode="selectOne" id="tdY-jk-iED">
+                                        <rect key="frame" x="-2" y="261" width="357" height="24"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="rounded" trackingMode="selectOne" id="tdY-jk-iED">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment label="高速公路" selected="YES"/>
-                                                <segment label="快速道路" tag="1"/>
+                                                <segment label="高速公路" image="Freeway" selected="YES"/>
+                                                <segment label="快速道路" image="Expressway" tag="1"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
@@ -825,21 +845,21 @@
                                         </connections>
                                     </segmentedControl>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYb-3T-iTb">
-                                        <rect key="frame" x="0.0" y="24" width="353" height="273"/>
+                                        <rect key="frame" x="0.0" y="24" width="353" height="239"/>
                                         <clipView key="contentView" drawsBackground="NO" id="Hd3-30-ujg">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="273"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="239"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" viewBased="YES" indentationPerLevel="16" outlineTableColumn="gfE-uW-9U2" id="Erj-tH-d7z">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="273"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="239"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                    <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
                                                         <tableColumn width="350" minWidth="16" maxWidth="1000" id="gfE-uW-9U2">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                <font key="font" metaFont="controlContent" size="11"/>
+                                                                <font key="font" metaFont="menu" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
@@ -1066,8 +1086,8 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="bSw-0L-BDS" secondAttribute="bottom" id="UYN-AJ-zlP"/>
+                            <constraint firstItem="bSw-0L-BDS" firstAttribute="top" secondItem="CsD-cB-A0v" secondAttribute="top" id="Usz-Cx-g38"/>
                             <constraint firstAttribute="trailing" secondItem="bSw-0L-BDS" secondAttribute="trailing" id="aCG-sq-il6"/>
-                            <constraint firstItem="bSw-0L-BDS" firstAttribute="top" secondItem="CsD-cB-A0v" secondAttribute="top" id="dol-b6-amJ"/>
                             <constraint firstItem="bSw-0L-BDS" firstAttribute="leading" secondItem="CsD-cB-A0v" secondAttribute="leading" id="wyE-Kv-GRU"/>
                         </constraints>
                     </view>
@@ -1077,12 +1097,15 @@
                 </viewController>
                 <customObject id="RZv-zW-DCr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-120" y="1218"/>
+            <point key="canvasLocation" x="-122.5" y="1218"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Expressway" width="15" height="15"/>
+        <image name="Freeway" width="15" height="15"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSGoForwardTemplate" width="9" height="12"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
+        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
     </resources>
 </document>

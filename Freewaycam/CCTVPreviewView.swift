@@ -1,5 +1,8 @@
 import Cocoa
 
+fileprivate let SOI = Data([0xFF, 0xD8])
+fileprivate let EOI = Data([0xFF, 0xD9])
+
 extension CCTVPreviewView {
     
     enum State {
@@ -34,18 +37,10 @@ class CCTVPreviewView: NSView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-        session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
-        
         wantsLayer = true
         layer?.contentsGravity = .resizeAspect
         backgroundColor = .controlBackgroundColor
-    }
-    
-    override func layout() {
-        super.layout()
-        let bgColor = backgroundColor
-        backgroundColor = bgColor
+        session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
     }
     
     private func isValidImageData(_ data: Data) -> Bool {
@@ -98,18 +93,9 @@ class CCTVPreviewView: NSView {
     
 }
 
-fileprivate let SOI = Data([0xFF, 0xD8])
-fileprivate let EOI = Data([0xFF, 0xD9])
-
 extension CCTVPreviewView: URLSessionDelegate, URLSessionDataDelegate {
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        if state != .playing {
-            imageData.removeAll()
-            recoveryCount = 0
-            state = .playing
-            didStart?()
-        }
         imageData += data
     }
     
@@ -118,6 +104,13 @@ extension CCTVPreviewView: URLSessionDelegate, URLSessionDataDelegate {
                     completionHandler: @escaping (URLSession.ResponseDisposition) -> Void)
     {
         if isValidImageData(imageData), let image = NSImage(data: imageData) {
+            if state != .playing {
+                recoveryCount = 0
+                state = .playing
+                didStart?()
+            } else if recoveryCount != 0 {
+                recoveryCount = 0
+            }
             setImage(image)
         }
         imageData.removeAll()

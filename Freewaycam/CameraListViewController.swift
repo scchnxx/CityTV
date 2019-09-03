@@ -170,7 +170,7 @@ class CameraListViewController: NSViewController {
 extension CameraListViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        item is Road ? 24 : 20
+        item is Road ? 22 : 20
     }
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
@@ -195,6 +195,10 @@ extension CameraListViewController: NSOutlineViewDataSource, NSOutlineViewDelega
         } else {
             return false
         }
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
+        !(item is Road)
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {

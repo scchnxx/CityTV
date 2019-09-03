@@ -3,6 +3,7 @@ import Cocoa
 class PreviewViewController: NSViewController {
     
     @IBOutlet weak var previewView: CCTVPreviewView!
+    @IBOutlet weak var stopButton: NSButton!
     @IBOutlet weak var loadingIndicator: NSProgressIndicator!
     @IBOutlet weak var reloadButton: NSButton!
     
@@ -18,8 +19,21 @@ class PreviewViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        previewView.backgroundColor = .gray
+        
+        setupPreviewView()
+        stopButton.isHidden = true
+        showLoadingIndicator = false
+        reloadButton.isHidden = true
+        
+        NotificationCenter.default.addObserver(forName: CameraListViewController.selectionDidChangeNotification, object: nil, queue: .main) { note in
+            guard let cctv = note.cctv else { return }
+            self.previewView.play(cctv: cctv)
+        }
+    }
+    
+    private func setupPreviewView() {
         previewView.didStartLoading = { [unowned self] in
+            self.stopButton.isHidden = false
             self.showLoadingIndicator = true
             self.reloadButton.isHidden = true
         }
@@ -28,22 +42,19 @@ class PreviewViewController: NSViewController {
             self.reloadButton.isHidden = true
         }
         previewView.didFailToStart = { [unowned self] in
+            self.stopButton.isHidden = true
             self.showLoadingIndicator = false
             self.reloadButton.isHidden = false
-            print("didFailToStart")
         }
         previewView.didStop = { [unowned self] in
+            self.stopButton.isHidden = true
             self.showLoadingIndicator = false
             self.reloadButton.isHidden = false
         }
-        
-        NotificationCenter.default.addObserver(forName: CameraListViewController.selectionDidChangeNotification, object: nil, queue: .main) { note in
-            guard let cctv = note.cctv else { return }
-            self.previewView.play(cctv: cctv)
-        }
-        
-        showLoadingIndicator = false
-        reloadButton.isHidden = true
+    }
+    
+    @IBAction func stopButtonClicked(_ sender: Any) {
+        previewView.stop()
     }
     
     @IBAction func reloadButtonClicked(_ sender: Any) {

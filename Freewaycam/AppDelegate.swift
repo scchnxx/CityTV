@@ -8,11 +8,6 @@
 
 import Cocoa
 
-struct A: Hashable {
-    var string: String
-    var int: Int
-}
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 

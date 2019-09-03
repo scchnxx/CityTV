@@ -29,6 +29,7 @@
 		85A67AD8231E2CC70049D614 /* BlockingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A67AD7231E2CC70049D614 /* BlockingViewController.swift */; };
 		85A67ADA231E33320049D614 /* CCTVCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A67AD9231E33320049D614 /* CCTVCellView.swift */; };
 		85A67ADC231E351B0049D614 /* CCTVCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A67ADB231E351B0049D614 /* CCTVCellViewModel.swift */; };
+		85A67ADE231E5FFD0049D614 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A67ADD231E5FFD0049D614 /* MainWindowController.swift */; };
 		85AF004523176FF80012E8EB /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AF003923176FE70012E8EB /* Gzip.framework */; };
 		85AF004623176FF80012E8EB /* Gzip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 85AF003923176FE70012E8EB /* Gzip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		85AF0049231770590012E8EB /* TrafficInfoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AF0048231770590012E8EB /* TrafficInfoLoader.swift */; };
@@ -119,6 +120,7 @@
 		85A67AD7231E2CC70049D614 /* BlockingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockingViewController.swift; sourceTree = "<group>"; };
 		85A67AD9231E33320049D614 /* CCTVCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVCellView.swift; sourceTree = "<group>"; };
 		85A67ADB231E351B0049D614 /* CCTVCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVCellViewModel.swift; sourceTree = "<group>"; };
+		85A67ADD231E5FFD0049D614 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		85AF002E23176FE70012E8EB /* Gzip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Gzip.xcodeproj; path = GzipSwift/Gzip.xcodeproj; sourceTree = "<group>"; };
 		85AF0048231770590012E8EB /* TrafficInfoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficInfoLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +162,7 @@
 				858E22AC231915270051B24E /* Utils */,
 				857453EF2318C3AF00C815FD /* CCTVPreviewView.swift */,
 				09AAC71F2316849900FC9398 /* AppDelegate.swift */,
+				85A67ADD231E5FFD0049D614 /* MainWindowController.swift */,
 				8508D6F8231CDE50000590E8 /* MainSplitViewController.swift */,
 				8508D6F6231CDE09000590E8 /* CameraListViewController.swift */,
 				85A67ACC231E07C80049D614 /* PreviewViewController.swift */,
@@ -351,6 +354,7 @@
 				09AAC7202316849900FC9398 /* AppDelegate.swift in Sources */,
 				85A67ACD231E07C80049D614 /* PreviewViewController.swift in Sources */,
 				85A67AD8231E2CC70049D614 /* BlockingViewController.swift in Sources */,
+				85A67ADE231E5FFD0049D614 /* MainWindowController.swift in Sources */,
 				858E22A52318F5000051B24E /* TrafficData.swift in Sources */,
 				85A67ADA231E33320049D614 /* CCTVCellView.swift in Sources */,
 				85AF0049231770590012E8EB /* TrafficInfoLoader.swift in Sources */,
