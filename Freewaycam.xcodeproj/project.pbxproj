@@ -9,10 +9,9 @@
 /* Begin PBXBuildFile section */
 		0909A369231980A8001951BE /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909A368231980A8001951BE /* Direction.swift */; };
 		09AAC7202316849900FC9398 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AAC71F2316849900FC9398 /* AppDelegate.swift */; };
-		09AAC7222316849900FC9398 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AAC7212316849900FC9398 /* ViewController.swift */; };
 		09AAC7242316849B00FC9398 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09AAC7232316849B00FC9398 /* Assets.xcassets */; };
 		09AAC7272316849B00FC9398 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09AAC7252316849B00FC9398 /* Main.storyboard */; };
-		8508D6F7231CDE09000590E8 /* CCTVListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8508D6F6231CDE09000590E8 /* CCTVListViewController.swift */; };
+		8508D6F7231CDE09000590E8 /* CameraListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8508D6F6231CDE09000590E8 /* CameraListViewController.swift */; };
 		8508D6F9231CDE50000590E8 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8508D6F8231CDE50000590E8 /* MainSplitViewController.swift */; };
 		856B8EC323179C1300A2C131 /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856B8EC223179C1300A2C131 /* DataParser.swift */; };
 		857453F02318C3AF00C815FD /* CCTVPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857453EF2318C3AF00C815FD /* CCTVPreviewView.swift */; };
@@ -25,6 +24,11 @@
 		858E22A9231900140051B24E /* RoadLevelValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E22A8231900140051B24E /* RoadLevelValue.swift */; };
 		858E22AB231911F30051B24E /* InfoValueCombinable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E22AA231911F30051B24E /* InfoValueCombinable.swift */; };
 		858E22AE231931FF0051B24E /* LocationPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E22AD231931FF0051B24E /* LocationPath.swift */; };
+		85A67ACD231E07C80049D614 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A67ACC231E07C80049D614 /* PreviewViewController.swift */; };
+		85A67AD6231E1A4A0049D614 /* RoadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A67AD5231E1A4A0049D614 /* RoadType.swift */; };
+		85A67AD8231E2CC70049D614 /* BlockingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A67AD7231E2CC70049D614 /* BlockingViewController.swift */; };
+		85A67ADA231E33320049D614 /* CCTVCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A67AD9231E33320049D614 /* CCTVCellView.swift */; };
+		85A67ADC231E351B0049D614 /* CCTVCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A67ADB231E351B0049D614 /* CCTVCellViewModel.swift */; };
 		85AF004523176FF80012E8EB /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AF003923176FE70012E8EB /* Gzip.framework */; };
 		85AF004623176FF80012E8EB /* Gzip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 85AF003923176FE70012E8EB /* Gzip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		85AF0049231770590012E8EB /* TrafficInfoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AF0048231770590012E8EB /* TrafficInfoLoader.swift */; };
@@ -93,12 +97,11 @@
 		0909A368231980A8001951BE /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		09AAC71C2316849900FC9398 /* Freewaycam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freewaycam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09AAC71F2316849900FC9398 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		09AAC7212316849900FC9398 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		09AAC7232316849B00FC9398 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09AAC7262316849B00FC9398 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		09AAC7282316849B00FC9398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09AAC7292316849B00FC9398 /* Freewaycam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Freewaycam.entitlements; sourceTree = "<group>"; };
-		8508D6F6231CDE09000590E8 /* CCTVListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVListViewController.swift; sourceTree = "<group>"; };
+		8508D6F6231CDE09000590E8 /* CameraListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraListViewController.swift; sourceTree = "<group>"; };
 		8508D6F8231CDE50000590E8 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		856B8EC223179C1300A2C131 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
 		857453EF2318C3AF00C815FD /* CCTVPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVPreviewView.swift; sourceTree = "<group>"; };
@@ -111,6 +114,11 @@
 		858E22A8231900140051B24E /* RoadLevelValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadLevelValue.swift; sourceTree = "<group>"; };
 		858E22AA231911F30051B24E /* InfoValueCombinable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoValueCombinable.swift; sourceTree = "<group>"; };
 		858E22AD231931FF0051B24E /* LocationPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPath.swift; sourceTree = "<group>"; };
+		85A67ACC231E07C80049D614 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		85A67AD5231E1A4A0049D614 /* RoadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadType.swift; sourceTree = "<group>"; };
+		85A67AD7231E2CC70049D614 /* BlockingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockingViewController.swift; sourceTree = "<group>"; };
+		85A67AD9231E33320049D614 /* CCTVCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVCellView.swift; sourceTree = "<group>"; };
+		85A67ADB231E351B0049D614 /* CCTVCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTVCellViewModel.swift; sourceTree = "<group>"; };
 		85AF002E23176FE70012E8EB /* Gzip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Gzip.xcodeproj; path = GzipSwift/Gzip.xcodeproj; sourceTree = "<group>"; };
 		85AF0048231770590012E8EB /* TrafficInfoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficInfoLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,9 +160,12 @@
 				858E22AC231915270051B24E /* Utils */,
 				857453EF2318C3AF00C815FD /* CCTVPreviewView.swift */,
 				09AAC71F2316849900FC9398 /* AppDelegate.swift */,
-				09AAC7212316849900FC9398 /* ViewController.swift */,
 				8508D6F8231CDE50000590E8 /* MainSplitViewController.swift */,
-				8508D6F6231CDE09000590E8 /* CCTVListViewController.swift */,
+				8508D6F6231CDE09000590E8 /* CameraListViewController.swift */,
+				85A67ACC231E07C80049D614 /* PreviewViewController.swift */,
+				85A67AD7231E2CC70049D614 /* BlockingViewController.swift */,
+				85A67AD9231E33320049D614 /* CCTVCellView.swift */,
+				85A67ADB231E351B0049D614 /* CCTVCellViewModel.swift */,
 				09AAC7232316849B00FC9398 /* Assets.xcassets */,
 				09AAC7252316849B00FC9398 /* Main.storyboard */,
 				09AAC7282316849B00FC9398 /* Info.plist */,
@@ -167,15 +178,16 @@
 			isa = PBXGroup;
 			children = (
 				858E22A42318F5000051B24E /* TrafficData.swift */,
+				858E22AA231911F30051B24E /* InfoValueCombinable.swift */,
 				858E229F2318F1C90051B24E /* CCTVInfo.swift */,
 				858E22A22318F24E0051B24E /* CCTVValue.swift */,
 				858E22922318E1950051B24E /* CCTV.swift */,
 				858E22A62318FFF60051B24E /* RoadLevelInfo.swift */,
 				858E22A8231900140051B24E /* RoadLevelValue.swift */,
 				858E229D2318E3470051B24E /* RoadLevel.swift */,
-				858E22AA231911F30051B24E /* InfoValueCombinable.swift */,
 				858E22AD231931FF0051B24E /* LocationPath.swift */,
 				0909A368231980A8001951BE /* Direction.swift */,
+				85A67AD5231E1A4A0049D614 /* RoadType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,16 +344,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				856B8EC323179C1300A2C131 /* DataParser.swift in Sources */,
-				09AAC7222316849900FC9398 /* ViewController.swift in Sources */,
-				8508D6F7231CDE09000590E8 /* CCTVListViewController.swift in Sources */,
+				8508D6F7231CDE09000590E8 /* CameraListViewController.swift in Sources */,
+				85A67ADC231E351B0049D614 /* CCTVCellViewModel.swift in Sources */,
 				858E22A9231900140051B24E /* RoadLevelValue.swift in Sources */,
 				858E229E2318E3470051B24E /* RoadLevel.swift in Sources */,
 				09AAC7202316849900FC9398 /* AppDelegate.swift in Sources */,
+				85A67ACD231E07C80049D614 /* PreviewViewController.swift in Sources */,
+				85A67AD8231E2CC70049D614 /* BlockingViewController.swift in Sources */,
 				858E22A52318F5000051B24E /* TrafficData.swift in Sources */,
+				85A67ADA231E33320049D614 /* CCTVCellView.swift in Sources */,
 				85AF0049231770590012E8EB /* TrafficInfoLoader.swift in Sources */,
 				858E22A02318F1C90051B24E /* CCTVInfo.swift in Sources */,
 				0909A369231980A8001951BE /* Direction.swift in Sources */,
 				858E22A72318FFF60051B24E /* RoadLevelInfo.swift in Sources */,
+				85A67AD6231E1A4A0049D614 /* RoadType.swift in Sources */,
 				857453F02318C3AF00C815FD /* CCTVPreviewView.swift in Sources */,
 				858E22AE231931FF0051B24E /* LocationPath.swift in Sources */,
 				858E22AB231911F30051B24E /* InfoValueCombinable.swift in Sources */,
