@@ -1,4 +1,4 @@
-enum LocationPath: String, CustomStringConvertible {
+enum LocationPath: String, CustomStringConvertible, CaseIterable {
     case n1   = "N1"
     case n2   = "N2"
     case n3   = "N3"
@@ -9,6 +9,7 @@ enum LocationPath: String, CustomStringConvertible {
     case n8   = "N8"
     case n10  = "N10"
     case n1H  = "N1H"
+    case n3N  = "N3N"
     case t66  = "T66"
     case t68  = "T68"
     case t72  = "T72"
@@ -21,35 +22,15 @@ enum LocationPath: String, CustomStringConvertible {
     case t86  = "T86"
     case t88  = "T88"
     case n2K  = "N2K"
-    case n3N  = "N3N"
     
-    init?(id: Int) {
-        switch id {
-        case 166:  self = .n1
-        case 135:  self = .n2
-        case 28:   self = .n3
-        case 143:  self = .n3A
-        case 128:  self = .n4
-        case 154:  self = .n5
-        case 5104: self = .n6
-        case 121:  self = .n8
-        case 113:  self = .n10
-        case 147:  self = .n1H
-        case 4104: self = .t66
-        case 4113: self = .t68
-        case 4121: self = .t72
-        case 4129: self = .t74
-        case 5253: self = .t74A
-        case 4141: self = .t76
-        case 4149: self = .t78
-        case 4158: self = .t82
-        case 4165: self = .t84
-        case 4171: self = .t86
-        case 4179: self = .t88
-        case 4969: self = .n2K
-        case 490:  self = .n3N
-        default:   return nil
+    init?(code: Int) {
+        for path in LocationPath.allCases {
+            if path.code == code {
+                self = path
+                return
+            }
         }
+        return nil
     }
     
     var description: String {
@@ -64,6 +45,7 @@ enum LocationPath: String, CustomStringConvertible {
         case .n8:   return "國道8號"
         case .n10:  return "國道10號"
         case .n1H:  return "汐五高架"
+        case .n3N:  return "南港連絡道"
         case .t66:  return "快速公路66號"
         case .t68:  return "快速公路68號"
         case .t72:  return "快速公路72號"
@@ -76,8 +58,54 @@ enum LocationPath: String, CustomStringConvertible {
         case .t86:  return "快速公路86號"
         case .t88:  return "快速公路88號"
         case .n2K:  return "台2己"
-        case .n3N:  return "南港連絡道"
         }
     }
+    
+    var code: Int {
+        switch self {
+            case .n1:   return 166
+            case .n2:   return 135
+            case .n3:   return 28
+            case .n3A:  return 143
+            case .n4:   return 128
+            case .n5:   return 154
+            case .n6:   return 5104
+            case .n8:   return 121
+            case .n10:  return 113
+            case .n1H:  return 147
+            case .n3N:  return 490
+            case .t66:  return 4104
+            case .t68:  return 4113
+            case .t72:  return 4121
+            case .t74:  return 4129
+            case .t74A: return 5253
+            case .t76:  return 4141
+            case .t78:  return 4149
+            case .t82:  return 4158
+            case .t84:  return 4165
+            case .t86:  return 4171
+            case .t88:  return 4179
+            case .n2K:  return 4969
+        }
+    }
+    
+    var roadType: RoadType {
+        switch self {
+        case .n1:  fallthrough
+        case .n2:  fallthrough
+        case .n3:  fallthrough
+        case .n3A: fallthrough
+        case .n4:  fallthrough
+        case .n5:  fallthrough
+        case .n6:  fallthrough
+        case .n8:  fallthrough
+        case .n10: fallthrough
+        case .n1H: fallthrough
+        case .n2K: fallthrough
+        case .n3N: return .freeway
+        default:   return .expressway
+        }
+    }
+    
 }
 

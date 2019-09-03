@@ -1,6 +1,6 @@
-enum Direction {
-    case north
-    case south
-    case west
-    case east
+enum Direction: String, CaseIterable {
+    case north = "N"
+    case south = "S"
+    case west  = "W"
+    case east  = "E"
 }
