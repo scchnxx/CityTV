@@ -1,11 +1,5 @@
 import Cocoa
 
-struct Road {
-    var name: String
-    var iconName: String
-    var cctvs: [CCTV]
-}
-
 extension LocationPath {
 
     private var directions: [Direction] {
@@ -74,7 +68,7 @@ class CameraListViewController: NSViewController {
     private var roadType = RoadType.freeway
     private var direction = Direction.north
     private var cctvs = [CCTV]()
-    private var roads = [Road]()
+    private var outlineViewNodes = [OutlineViewNode]()
     private var showBlockingView: Bool {
         get {
             blockingViewController.view.superview != nil
@@ -115,33 +109,35 @@ class CameraListViewController: NSViewController {
                 self.cctvs = []
             }
 
-            self.updateRoads()
+            self.updateOutlineViewNodes()
             self.reloadOutlineView()
             self.showBlockingView = false
         }
     }
     
-    private func updateRoads() {
-        var roads = [Road]()
+    private func updateOutlineViewNodes() {
+        var nodes = [OutlineViewNode]()
         var cctvs = self.cctvs.filter { $0.direction == self.direction }
         let locationPathFilter: (LocationPath) -> Bool = {
             $0.roadType == self.roadType &&
                 $0.hasDirection(self.direction)
         }
+        let locationPaths = LocationPath.allCases.filter(locationPathFilter)
         
-        for path in LocationPath.allCases.filter(locationPathFilter) {
-            var road = Road(name: "\(path)", iconName: path.iconName, cctvs: [])
+        for (index, path) in locationPaths.enumerated() {
+            var node = OutlineViewNode(name: "\(path)", iconName: path.iconName, children: [])
             cctvs.removeAll { cctv in
-                if cctv.locationpath == path {
-                    road.cctvs += [cctv]
-                    return true
-                }
-                return false
+                guard cctv.locationpath == path else { return false }
+                node.children.append(OutlineViewNode(name: "", cctv: cctv, children: []))
+                return true
             }
-            roads += [road]
+            nodes += [node]
+            if index < locationPaths.count - 1 {
+                nodes += [OutlineViewNode.separator()]
+            }
         }
         
-        self.roads = roads
+        outlineViewNodes = nodes
     }
     
     private func reloadOutlineView() {
@@ -151,13 +147,13 @@ class CameraListViewController: NSViewController {
     
     @IBAction func roadTypeControlDidChangeValue(_ sender: NSSegmentedControl) {
         roadType = RoadType(rawValue: sender.indexOfSelectedItem)!
-        updateRoads()
+        updateOutlineViewNodes()
         reloadOutlineView()
     }
     
     @IBAction func directionListButtonDidChangeValue(_ sender: NSPopUpButton) {
         direction = Direction.allCases[sender.indexOfSelectedItem]
-        updateRoads()
+        updateOutlineViewNodes()
         reloadOutlineView()
     }
     
@@ -170,47 +166,59 @@ class CameraListViewController: NSViewController {
 extension CameraListViewController: NSOutlineViewDataSource, NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        item is Road ? 22 : 20
+        if let node = item as? OutlineViewNode {
+            if node.isSeparator {
+                return 10
+            } else if node.isLeaf {
+                return 20
+            } else {
+                return 22
+            }
+        }
+        return 20
     }
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        if let road = item as? Road {
-            return road.cctvs[index]
+        if let node = item as? OutlineViewNode {
+            return node.children[index]
         } else {
-            return roads[index]
+            return outlineViewNodes[index]
         }
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        if let road = item as? Road {
-            return road.cctvs.count
+        if let node = item as? OutlineViewNode {
+            return node.children.count
         } else {
-            return roads.count
+            return outlineViewNodes.count
         }
     }
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        if let road = item as? Road {
-            return !road.cctvs.isEmpty
+        if let node = item as? OutlineViewNode {
+            return !node.isLeaf
         } else {
             return false
         }
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        !(item is Road)
+        (item as? OutlineViewNode)?.isLeaf ?? false
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        let cellId = (item is Road ? "RoadCell" : "CCTVCell")
+        guard let node = item as? OutlineViewNode else { return nil }
+        
+        let cellId = node.isSeparator ? "SeparatorCell" : (node.isLeaf ? "CCTVCell" : "RoadCell")
         let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellId), owner: nil)
         
-        if let road = item as? Road, let roadCell = view as? NSTableCellView {
-            roadCell.textField?.stringValue = road.name
-            roadCell.imageView?.image = NSImage(named: road.iconName)
-        } else if let cctv = item as? CCTV, let cctvCell = view as? CCTVCellView {
-            let vm = CCTVCellViewModel(cctv: cctv)
-            cctvCell.loadCellViewModel(vm)
+        if let cctv = node.cctv, let cctvCellView = view as? CCTVCellView {
+            var vm = CCTVCellViewModel(cctv: cctv)
+            vm.iconName = "CCTV"
+            cctvCellView.loadViewModel(vm)
+        } else if let roadCellView = view as? RoadCellView, !node.isSeparator {
+            let vm = RoadCellViewModel(name: node.name, iconName: node.iconName)
+            roadCellView.loadViewModel(vm)
         }
         
         return view
@@ -218,7 +226,8 @@ extension CameraListViewController: NSOutlineViewDataSource, NSOutlineViewDelega
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
         guard outlineView.selectedRow != -1 else { return }
-        guard let cctv = outlineView.item(atRow: outlineView.selectedRow) as? CCTV else { return }
+        guard let node = outlineView.item(atRow: outlineView.selectedRow) as? OutlineViewNode else { return }
+        guard let cctv = node.cctv else { return }
         NotificationCenter.default.post(name: CameraListViewController.selectionDidChangeNotification,
                                         object: nil, userInfo: [Key.cctv: cctv])
     }

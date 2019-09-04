@@ -17,6 +17,7 @@ extension String {
 struct CCTVCellViewModel {
     var from: String = ""
     var to: String = ""
+    var iconName: String?
     
     init(cctv: CCTV) {
         if let start = cctv.roadsection.range(of: "(")?.upperBound {

@@ -1,20 +1,18 @@
 import Cocoa
 
-class CCTVCellView: NSTableCellView {
+class CCTVCellView: NSTableCellView, ViewModelLoadable {
 
     var cellViewModel: CCTVCellViewModel?
     
     @IBOutlet weak var fromTextField: NSTextField!
     @IBOutlet weak var toTextField: NSTextField!
     
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-    }
-    
-    func loadCellViewModel(_ vm: CCTVCellViewModel) {
+    func loadViewModel(_ vm: CCTVCellViewModel) {
         fromTextField.stringValue = vm.from
         toTextField.stringValue = vm.to
-        imageView?.image = #imageLiteral(resourceName: "CCTV")
+        if let iconName = vm.iconName {
+            imageView?.image = NSImage(named: iconName)
+        }
         cellViewModel = vm
     }
     

@@ -871,7 +871,7 @@ Gw
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
-                                                                <tableCellView identifier="RoadCell" id="sL9-QE-0QB">
+                                                                <tableCellView identifier="RoadCell" id="sL9-QE-0QB" customClass="RoadCellView" customModule="CityTV" customModuleProvider="target">
                                                                     <rect key="frame" x="1" y="1" width="350" height="18"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
@@ -984,6 +984,20 @@ Gw
                                                                         <outlet property="imageView" destination="qNC-ZQ-aOP" id="CcI-aV-sds"/>
                                                                         <outlet property="toTextField" destination="DWa-A9-tNm" id="4Bh-wV-dnI"/>
                                                                     </connections>
+                                                                </tableCellView>
+                                                                <tableCellView identifier="SeparatorCell" id="gA6-Yn-8A8">
+                                                                    <rect key="frame" x="1" y="40" width="350" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="r3L-ai-CiS">
+                                                                            <rect key="frame" x="0.0" y="6" width="350" height="5"/>
+                                                                        </box>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="r3L-ai-CiS" firstAttribute="centerY" secondItem="gA6-Yn-8A8" secondAttribute="centerY" id="8RE-j2-Pwt"/>
+                                                                        <constraint firstItem="r3L-ai-CiS" firstAttribute="leading" secondItem="gA6-Yn-8A8" secondAttribute="leading" id="MHg-yU-dNs"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="r3L-ai-CiS" secondAttribute="trailing" id="Nme-5W-gAA"/>
+                                                                    </constraints>
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
